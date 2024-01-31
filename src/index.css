@@ -5,6 +5,8 @@
 body {
   margin: 0;
   padding: 0;
+    background-color: rgba(0, 0, 0, 0.96);
+
 }
 
 .container-fluid {
@@ -13,7 +15,6 @@ body {
 
 .content-area {
   padding: 20px;
-  background-color: rgba(0, 0, 0, 0.96);
   color: white;
 }
 
@@ -29,4 +30,9 @@ body {
 
 .overflow-hidden {
   overflow: hidden;
+}
+
+.e-switch-wrapper .e-switch-on, .e-css.e-switch-wrapper .e-switch-on {
+	background-color: #ffc107 !important;
+	/* color: #fff; */
 }
