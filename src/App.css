@@ -2,10 +2,11 @@
 @import "../node_modules/@syncfusion/ej2-react-layouts/styles/bootstrap5-dark.css";
 @import "../node_modules/@syncfusion/ej2-layouts/styles/bootstrap5-dark.css";
 @import "../node_modules/@syncfusion/ej2-inputs/styles/bootstrap5-dark.css";
-@import "../node_modules/@syncfusion/ej2-buttons/styles/bootstrap5-dark.css";
+@import "../node_modules/@syncfusion/ej2-react-buttons/styles/bootstrap5-dark.css";
 @import "../node_modules/@syncfusion/ej2-popups/styles/bootstrap5-dark.css";
 @import "../node_modules/@syncfusion/ej2-react-calendars/styles/bootstrap5-dark.css";
 @import "../node_modules/@syncfusion/ej2-react-dropdowns/styles/bootstrap5-dark.css";
+@import "../node_modules/@syncfusion/ej2-react-notifications/styles/bootstrap5-dark.css";
 
 
 
