@@ -1,6 +1,7 @@
 import {
   FC,
   ReactElement,
+  useContext,
   useEffect,
   useState,
 } from 'react';
@@ -16,6 +17,7 @@ import { MessageComponent } from '@syncfusion/ej2-react-notifications';
 import { useMutation } from '@tanstack/react-query';
 import { sendApiRequest } from '../../helpers/sendApiRequest';
 import { ICreateTask } from '../taskArea/interfaces/ICreateTask';
+import { TaskStatusChangedContext } from '../../context';
 
 const CreateTaskForm: FC = (): ReactElement => {
   const [title, setTitle] = useState<string | undefined>(
@@ -31,6 +33,10 @@ const CreateTaskForm: FC = (): ReactElement => {
   const [status, setStatus] = useState<string>(Status.todo);
   const [priority, setPriority] = useState<string>(
     Priority.normal,
+  );
+
+  const tasksUpdatedContext = useContext(
+    TaskStatusChangedContext,
   );
 
   const createTaskMutation = useMutation({
@@ -67,6 +73,7 @@ const CreateTaskForm: FC = (): ReactElement => {
   useEffect(() => {
     if (createTaskMutation.isSuccess) {
       setShowSuccess(true);
+      tasksUpdatedContext.toggle();
     }
 
     const successTimeout = setTimeout(() => {

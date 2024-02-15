@@ -3,11 +3,14 @@ import { ITaskFooter } from './interfaces/ITaskFooter';
 import PropTypes from 'prop-types';
 import { SwitchComponent } from '@syncfusion/ej2-react-buttons';
 import { ButtonComponent } from '@syncfusion/ej2-react-buttons';
+import { Status } from '../createTaskForm/enums/Status';
 
 const TaskFooter: FC<ITaskFooter> = (
   props,
 ): ReactElement => {
   const {
+    id,
+    status,
     onStatusChange = (e) => console.log(e),
     onClick = (e) => console.log(e),
   } = props;
@@ -20,7 +23,8 @@ const TaskFooter: FC<ITaskFooter> = (
       >
         <SwitchComponent
           id="customSwitch"
-          change={(e) => onStatusChange(e)}
+          change={(e) => onStatusChange(e, id)}
+          checked={status === Status.inProgress}
         />
         <label
           className="form-check-label"
@@ -33,7 +37,7 @@ const TaskFooter: FC<ITaskFooter> = (
       <ButtonComponent
         cssClass="e-success e-small"
         onClick={(e: React.MouseEvent<HTMLButtonElement>) =>
-          onClick(e)
+          onClick(e, id)
         }
       >
         Mark Complete
@@ -43,6 +47,8 @@ const TaskFooter: FC<ITaskFooter> = (
 };
 
 TaskFooter.propTypes = {
+  id: PropTypes.string.isRequired,
+  status: PropTypes.string,
   onStatusChange: PropTypes.func,
   onClick: PropTypes.func,
 };
