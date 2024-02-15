@@ -40,6 +40,7 @@ const CreateTaskForm: FC = (): ReactElement => {
   );
 
   const createTaskMutation = useMutation({
+    mutationKey: ['tasks'],
     mutationFn: (data: ICreateTask) => {
       return sendApiRequest(
         'http://localhost:3200/tasks',
@@ -80,7 +81,9 @@ const CreateTaskForm: FC = (): ReactElement => {
       setShowSuccess(false);
     }, 7000);
 
-    return () => clearTimeout(successTimeout);
+    return () => {
+      clearTimeout(successTimeout);
+    };
   }, [createTaskMutation.isSuccess]);
 
   return (
@@ -101,16 +104,18 @@ const CreateTaskForm: FC = (): ReactElement => {
 
           <div className="w-100 mb-3">
             <TaskTitleField
-              onChange={(e) => setTitle(e.target.value)}
+              onChange={(args: any) => {
+                setTitle(args.value);
+              }}
               disabled={createTaskMutation.isPending}
             />
           </div>
 
           <div className="w-100 mb-3">
             <TaskDescriptionField
-              onChange={(e) =>
-                setDescription(e.target.value)
-              }
+              onChange={(args: any) => {
+                setDescription(args.value);
+              }}
               disabled={createTaskMutation.isPending}
             />
           </div>
@@ -130,18 +135,17 @@ const CreateTaskForm: FC = (): ReactElement => {
                   label="Status"
                   name="status"
                   value={status}
-                  onChange={(e) =>
-                    setStatus(e.target.value as string)
-                  }
+                  onChange={(e) => {
+                    setStatus(e.value as string);
+                  }}
                   items={[
                     {
                       value: Status.todo,
-                      label: Status.todo.toUpperCase(),
+                      label: Status.todo,
                     },
                     {
                       value: Status.inProgress,
-                      label:
-                        Status.inProgress.toUpperCase(),
+                      label: Status.inProgress,
                     },
                   ]}
                   disabled={createTaskMutation.isPending}
@@ -152,9 +156,9 @@ const CreateTaskForm: FC = (): ReactElement => {
                   label="Priority"
                   name="priority"
                   value={priority}
-                  onChange={(e) =>
-                    setPriority(e.target.value as string)
-                  }
+                  onChange={(e) => {
+                    setPriority(e.value as string);
+                  }}
                   items={[
                     {
                       value: Priority.low,

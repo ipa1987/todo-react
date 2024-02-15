@@ -8,7 +8,7 @@ const TaskTitleField: FC<ITextField> = (
 ): ReactElement => {
   // Destructure props
   const {
-    onChange = (e) => console.log(e.currentTarget.value),
+    onChange = (args) => console.log(args.value),
     disabled = false,
   } = props;
 

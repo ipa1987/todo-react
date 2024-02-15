@@ -65,9 +65,7 @@ const TaskArea: FC = (): ReactElement => {
   ) {
     updateTaskMutation.mutate({
       id,
-      status: e.target.checked
-        ? Status.inProgress
-        : Status.todo,
+      status: e.checked ? Status.inProgress : Status.todo,
     });
   }
 
